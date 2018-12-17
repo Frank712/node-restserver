@@ -9,7 +9,7 @@ app.get('/user', function(req, res) {
     since = Number(since);
     let limit = req.query.limit || 5;
     limit = Number(limit);
-    User.find({  }, 'name email role status img google')
+    User.find({ status: true }, 'name email role status img google')
         .skip(since)
         .limit(limit)
         .exec( (err, users) => {
@@ -19,7 +19,7 @@ app.get('/user', function(req, res) {
                     err
                 });
             }
-            User.count({ }, (err, counter) => {
+            User.count({ status: true }, (err, counter) => {
                 res.json({
                     ok: true,
                     users,
