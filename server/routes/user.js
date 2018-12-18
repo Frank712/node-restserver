@@ -7,11 +7,11 @@ const { verifyToken, verifyAdminRole } = require('../middleware/authentication')
 const User = require('../models/user');
 
 app.get('/user', verifyToken, (req, res) => {
-    return res.json({
+    /*return res.json({
         user: req.user,
         name: req.user.name,
         email: req.user.email
-    });
+    });*/
 
     let since = req.query.since || 0;
     since = Number(since);
