@@ -7,18 +7,13 @@ const { verifyToken, verifyAdminRole } = require('../middleware/authentication')
 const User = require('../models/user');
 
 app.get('/user', verifyToken, (req, res) => {
-    /*return res.json({
-        user: req.user,
-        name: req.user.name,
-        email: req.user.email
-    });*/
 
-    let since = req.query.since || 0;
-    since = Number(since);
+    let _from = req.query._from || 0;
+    _from = Number(_from);
     let limit = req.query.limit || 5;
     limit = Number(limit);
     User.find({ status: true }, 'name email role status img google')
-        .skip(since)
+        .skip(_from)
         .limit(limit)
         .exec( (err, users) => {
             if( err ) {
