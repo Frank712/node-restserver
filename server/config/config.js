@@ -11,7 +11,7 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
 //===========================
 // 	Expiration Date of Token
 //===========================
-process.env.EXPIRATE_TOKEN = 60 * 60 * 24 * 30;
+process.env.EXPIRATE_TOKEN = '48h';
 
 //===========================
 // 	SEED Authentication
