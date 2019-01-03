@@ -190,6 +190,9 @@ app.delete('/product/:id', verifyToken, (req, res) =>{
 
 });
 
+// =========================================
+//      Search products by term
+// =========================================
 app.get('/product/search/:term', verifyToken, (req, res)=>{
     let term = req.params.term;
     let regex = new RegExp(term, 'i');
