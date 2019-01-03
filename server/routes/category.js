@@ -12,6 +12,8 @@ let Category = require('../models/category');
 app.get('/category', verifyToken, (req, res)=>{
 
     Category.find({})
+        .sort('description')
+        .populate('user', 'name email')
         .exec((err, categoriesDB) =>{
             if( err ) {
                 return res.status(400).json({
@@ -36,6 +38,14 @@ app.get('/category/:id', verifyToken, (req, res)=>{
             return res.status(400).json({
                 ok: false,
                 err
+            });
+        }
+        if( !categoryDB ) {
+            return res.status(400).json({
+                ok: false,
+                err: {
+                    message: "Category not found!"
+                }
             });
         }
         res.json({
